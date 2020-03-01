@@ -1,0 +1,5 @@
+for i in {1..5}; 
+do 
+param=$RANDOM
+echo $(( param %= 100 ))
+done
