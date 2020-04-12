@@ -14,19 +14,16 @@
 
 #include "find_min_max.h"
 #include "utils.h"
-
-#include "find_min_max.c"
 #include "utils.c"
-
 int main(int argc, char **argv) {
   int seed = -1;
   int array_size = -1;
   int pnum = -1;
   bool with_files = false;
-  
- 
+
+
   while (true) {
-  //  int current_optind = optind ? optind : 1;
+    int current_optind = optind ? optind : 1;
 
     static struct option options[] = {{"seed", required_argument, 0, 0},
                                       {"array_size", required_argument, 0, 0},
@@ -88,7 +85,7 @@ int main(int argc, char **argv) {
         printf("getopt returned character code 0%o?\n", c);
     }
   }
-	
+
 
   if (optind < argc) {
     printf("Has at least one no option argument\n");
@@ -113,7 +110,7 @@ int main(int argc, char **argv) {
         	printf("Can\'t create pipe\n");
 	      }
   }else{
-	
+
   	file=fopen("tile","wb+");
 	if(file==NULL)
 		printf("Can\'t create file\n");
@@ -136,7 +133,7 @@ int main(int argc, char **argv) {
 	int end=begin+sizeforprocess;
 	if(active_child_processes==pnum) 
 	    end=array_size;
-	     
+
 	for(int j=begin;j<end;j++){
 		num=array[j];
 	        if(num<min) min=num;
@@ -163,11 +160,11 @@ int main(int argc, char **argv) {
       return 1;
     }
   }
- 
- //int* stat;
+
+ int* stat;
   while (active_child_processes > 0) {
-   
-   // wait(stat);
+
+    wait(stat);
     active_child_processes -= 1;
   }
 if(!with_files)
@@ -178,7 +175,7 @@ fclose(file);
 if(file==NULL)
 	printf("Can\'t create file\n");
 }
- 
+
   struct MinMax min_max;
   min_max.min = INT_MAX;
   min_max.max = INT_MIN;
@@ -187,7 +184,7 @@ if(file==NULL)
     int min = INT_MAX;
     int max = INT_MIN;
     int mmnumb[2];
-	
+
     if (with_files) {
        //read from files
 	fread(mmnumb,1,sizeof(mmnumb),file);

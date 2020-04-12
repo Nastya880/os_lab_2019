@@ -1,0 +1,1 @@
+--seed 2 --array_size 3 --pnum 2
