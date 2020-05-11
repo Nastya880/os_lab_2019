@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
   for (uint32_t i = 0; i < pnum; i++) {
       pthread_join(threads[i], NULL);
   }
-  
+  printf("The factorial of %i equals %i.\n", k, result);
   printf("The factorial %lli by mod %lli is: %lli \n", k, mod, result);
   return 0;
 }
