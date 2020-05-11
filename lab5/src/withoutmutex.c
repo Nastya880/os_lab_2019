@@ -12,7 +12,7 @@ void do_wrap_up(int);
 int common = 0; /* A shared variable for two threads */
 int r1 = 0, r2 = 0, r3 = 0;
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
-
+//два потока изменяют одну переменную, копируя ее в локальную переменную- каждый увеличивает 50 раз, значит в итоге должно получится 100
 int main() {
   pthread_t thread1, thread2;
 
