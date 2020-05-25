@@ -54,7 +54,12 @@ uint64_t Factorial(const struct FactorialArgs *args)
     }
 	return ans;
 }
-
+bool flag= false;
+void *ThreadKeyHandler()
+{
+    getchar();
+    flag=true;
+}
 void *ThreadFactorial(void *args)
 {
 	struct FactorialArgs *fargs = (struct FactorialArgs *)args;
@@ -66,7 +71,7 @@ int main(int argc, char **argv)
 	int tnum = -1;
 	int port = -1;
 
-	while (true)
+	while (!flag)
 	{
 		int current_optind = optind ? optind : 1;
 
@@ -155,7 +160,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		while (true)
+		while (!flag)
 		{
 			unsigned int buffer_size = sizeof(uint64_t) * 3;
 			char from_client[buffer_size];
