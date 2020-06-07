@@ -33,10 +33,10 @@ int main() {
     perror("bind problem");
     exit(1);
   }
-  printf("SERVER starts...\n");
+  printf("SERVER starts...\n"); 
 
   while (1) {
-    unsigned int len = SLEN;
+    unsigned int len = SLEN; 
 
     if ((n = recvfrom(sockfd, mesg, BUFSIZE, 0, (SADDR *)&cliaddr, &len)) < 0) {
       perror("recvfrom");
